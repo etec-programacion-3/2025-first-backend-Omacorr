@@ -1,0 +1,99 @@
+### Variables
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+
+### Get all products
+GET {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+### Get all products with pagination (skip 0, limit 10)
+GET {{baseUrl}}/products?skip=0&limit=10
+Content-Type: {{contentType}}
+
+### Get a specific product by ID
+GET {{baseUrl}}/products/1
+Content-Type: {{contentType}}
+
+### Create a new product - Laptop Gaming
+POST {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+{
+    "name": "Laptop Gaming",
+    "price": 1299.99,
+    "description": "Laptop gaming de alta gama con RTX 3080"
+}
+
+### Create a new product - Monitor 4K
+POST {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+{
+    "name": "Monitor 4K",
+    "price": 499.99,
+    "description": "Monitor 4K de 32 pulgadas"
+}
+
+### Create a new product - Teclado Mecánico
+POST {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+{
+    "name": "Teclado Mecánico",
+    "price": 129.99,
+    "description": "Teclado mecánico RGB con switches Cherry MX"
+}
+
+### Create a new product - Mouse Gaming
+POST {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+{
+    "name": "Mouse Gaming",
+    "price": 79.99,
+    "description": "Mouse gaming inalámbrico con 16000 DPI"
+}
+
+### Update a product
+PUT {{baseUrl}}/products/1
+Content-Type: {{contentType}}
+
+{
+    "name": "Laptop Gaming Pro",
+    "price": 1499.99,
+    "description": "Laptop gaming actualizada con RTX 3080 Ti"
+}
+
+### Delete a product
+DELETE {{baseUrl}}/products/1
+Content-Type: {{contentType}}
+
+### Error Cases
+
+### Try to get a non-existent product
+GET {{baseUrl}}/products/999
+Content-Type: {{contentType}}
+
+### Try to update a non-existent product
+PUT {{baseUrl}}/products/999
+Content-Type: {{contentType}}
+
+{
+    "name": "Producto Inexistente",
+    "price": 99.99,
+    "description": "Este producto no existe"
+}
+
+### Try to delete a non-existent product
+DELETE {{baseUrl}}/products/999
+Content-Type: {{contentType}}
+
+### Try to create a product with invalid data
+POST {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+{
+    "name": "",
+    "price": -100,
+    "description": ""
+} 
