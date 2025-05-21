@@ -62,3 +62,14 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     """Datos contenidos en el token"""
     username: Optional[str] = None
+    
+from pydantic import BaseModel, EmailStr
+
+class UsuarioCreate(BaseModel):
+    nombre: str
+    email: EmailStr
+    password: str
+
+class UsuarioLogin(BaseModel):
+    email: EmailStr
+    password: str
