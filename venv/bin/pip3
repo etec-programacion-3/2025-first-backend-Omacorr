@@ -1,4 +1,4 @@
-#!/home/etec/2025-first-backend-Omacorr/venv/bin/python3
+#!/home/rogomar/Escritorio/backend-library-management/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

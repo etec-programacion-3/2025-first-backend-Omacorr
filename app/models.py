@@ -1,12 +1,26 @@
-from tortoise import fields
-from tortoise.models import Model
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
-class Usuario(Model):
-    id = fields.IntField(pk=True)
-    nombre = fields.CharField(max_length=100)
-    apellido = fields.CharField(max_length=100)
-    email = fields.CharField(max_length=255, unique=True)
-    password = fields.CharField(max_length=255)
-    rol = fields.CharField(max_length=50, default="usuario")  # usuario o admin
-    activo = fields.BooleanField(default=True)
-    fecha_creacion = fields.DatetimeField(auto_now_add=True)
+db = SQLAlchemy()
+
+class Libro(db.Model):
+    __tablename__ = 'libros'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    titulo = db.Column(db.String(255), nullable=False)
+    autor = db.Column(db.String(255), nullable=False)
+    isbn = db.Column(db.String(13), unique=True, nullable=False)
+    categoria = db.Column(db.String(100), nullable=False)
+    estado = db.Column(db.String(50), nullable=False, default='disponible')
+    fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'titulo': self.titulo,
+            'autor': self.autor,
+            'isbn': self.isbn,
+            'categoria': self.categoria,
+            'estado': self.estado,
+            'fecha_creacion': self.fecha_creacion.isoformat()
+        }
